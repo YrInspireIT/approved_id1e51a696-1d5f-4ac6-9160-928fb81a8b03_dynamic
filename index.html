@@ -1,449 +1,830 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Approved</title>
-    
-    
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&family=Jost:ital,wght@0,100..900;1,100..900&family=Lexend+Deca:wght@100..900&family=Playwrite+IT+Moderna:wght@100..400&family=Raleway:ital,wght@0,100..900;1,100..900&family=Voces&display=swap" rel="stylesheet">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration Approved - Your Inspire IT</title> <!-- Consistent Title -->
+    <!-- Link to Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Link to Google Fonts (Using Poppins from the theme) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- If you absolutely need the other fonts, uncomment below, but Poppins provides consistency -->
+    <!--
+    <link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&family=Jost:ital,wght@0,100..900;1,100..900&family=Lexend+Deca:wght@100..900&family=Playwrite+IT+Moderna:wght@100..400&family=Raleway:ital,wght@0,100..900;1,100..900&family=Voces&display=swap" rel="stylesheet">
+    -->
 
     <style>
+        /* --- Global Styles & Variables (From Theme) --- */
+        :root {
+            --primary-bg: #f4f7fc;
+            --secondary-bg: #ffffff;
+            --tertiary-bg: #f8fafc; /* Used for display sections bg */
+            --text-dark: #1e293b;
+            --text-light: #475569;
+            --text-lighter: #64748b;
+            --accent-color: #4f46e5;
+            --accent-hover: #4338ca;
+            --accent-light: rgba(79, 70, 229, 0.1);
+            --border-color: #e2e8f0;
+            --shadow-color: rgba(100, 116, 139, 0.12);
+            --success-color: #10b981; /* Theme's success green */
+            --success-light-bg: #e7fbf4; /* Light green background for copy block */
+            --error-color: #ef4444;
+            /* Colors inspired by the second snippet for output, adapted to theme */
+            --output-label-color: var(--accent-color); /* Was #2bd5ff */
+            --output-heading-color: var(--success-color); /* Was #3bff00 */
+            --output-heading-shadow: rgba(16, 185, 129, 0.4); /* Adapt shadow */
+            --output-text-color: var(--text-dark); /* Use theme's dark text */
+            --output-copy-bg: #2a3342; /* Darker bg for copy section */
+            --output-copy-text: #e2e8f0;
+            --output-copy-border: var(--success-color);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: "Lexend Deca", sans-serif;
-            background-color: #000;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            background-color: #000;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        }
-
-        h2 {
-            text-align: center;
-        }
-
-        form {
+            font-family: 'Poppins', sans-serif; /* Theme's primary font */
+            background-color: var(--primary-bg);
+            color: var(--text-dark);
+            line-height: 1.7;
+            font-size: 16px;
+            overflow-x: hidden;
             display: flex;
             flex-direction: column;
-            width: 90%;
+            min-height: 100vh;
         }
+        main { flex: 1; }
 
-        label {
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #fff;
+        .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+        h1, h2, h3 { font-weight: 600; color: var(--text-dark); margin-bottom: 0.8em; }
+        h2 { font-size: 1.7rem; }
+        p { margin-bottom: 1em; color: var(--text-light); }
+        a { text-decoration: none; color: var(--accent-color); transition: color 0.3s ease; }
+        a:hover { color: var(--accent-hover); }
+        section { padding: 60px 0; }
+
+        .btn { display: inline-block; background-color: var(--accent-color); color: #fff; padding: 12px 28px; border-radius: 8px; font-weight: 600; font-size: 1rem; transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; border: none; cursor: pointer; text-align: center; width: 100%; letter-spacing: 0.5px; }
+        .btn:hover { background-color: var(--accent-hover); transform: translateY(-3px); box-shadow: 0 6px 18px rgba(79, 70, 229, 0.35); }
+        .btn:disabled { background-color: var(--text-lighter); cursor: not-allowed; transform: none; box-shadow: none; }
+        .btn.btn-success { /* Specific style for copy button */
+             background-color: var(--success-color);
+             width: auto; /* Allow copy button to size naturally */
+             display: block; /* Make it block to center with margin:auto */
+             margin: 25px auto 0 auto; /* Center copy button */
         }
+         .btn.btn-success:hover {
+             background-color: #0f9d6b; /* Darker green */
+             box-shadow: 0 6px 18px rgba(16, 185, 129, 0.35);
+         }
 
-        input[type="text"],
-        input[type="email"],
-        input[type="number"],
-        input[type="password"] {
-            padding: 8px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
 
-        input[type="submit"] {
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
+        /* --- Header/Navigation (From Theme) --- */
+        .main-header { background-color: var(--secondary-bg); padding: 15px 0; box-shadow: 0 2px 10px var(--shadow-color); position: sticky; top: 0; z-index: 1000; }
+        .main-header .container { display: flex; justify-content: space-between; align-items: center; position: relative; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--accent-color); }
+        .main-nav { display: flex; }
+        .main-nav a { margin-left: 25px; font-weight: 500; color: var(--text-dark); position: relative; padding-bottom: 5px; }
+        .main-nav a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--accent-color); transition: width 0.3s ease; }
+        .main-nav a:hover::after { width: 100%; }
+        .main-nav a:hover, .main-nav a.active-nav { color: var(--accent-color); }
+        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; background: none; border: none; color: var(--text-dark); }
 
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-
-        .phone-input {
+        /* --- Registration/Approval Section --- */
+        #registration-section {
             display: flex;
-            align-items: center;
+            align-items: flex-start; /* Align top for long content */
+            justify-content: center;
+            padding: 60px 0;
+            min-height: calc(100vh - 150px);
         }
 
-        .phone-input select {
-            padding: 8px;
-            margin-right: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            background-color: white;
-        }
-
-        #formOutput {
-            margin-top: 20px;
-            display: none;
-            padding: 20px;
-            background-color: #e6ffe6;
-            border: 1px solid #4CAF50;
-            border-radius: 8px;
-        }
-
-        .box {
-            width: 170px;
-            height: 170px;
-            background-color: #26ff00; /* Approved color */
-            border-radius: 50%;
+        .registration-container {
+            background-color: var(--secondary-bg);
+            padding: 40px; /* Consistent padding */
+            border-radius: 12px;
+            box-shadow: 0 12px 35px var(--shadow-color);
+            max-width: 800px; /* Wider container for display */
+            width: 100%;
+            animation: fadeInScaleUp 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+            overflow: hidden;
             position: relative;
-            transform-style: preserve-3d;
-            animation: rotate 3s infinite linear;
-            text-align: center;
-            top: 30px;
-            left: 45%;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5), 0 0 40px rgba(0, 255, 0, 0.5);
         }
 
-        .glow {
-            animation: glow 1s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from { box-shadow: 0 0 10px #2ecc71, 0 0 20px #2ecc71, 0 0 30px #2ecc71; }
-            to { box-shadow: 0 0 20px #2ecc71, 0 0 30px #2ecc71, 0 0 40px #2ecc71; }
-        }
-
-        .done-sign {
+        /* Content Areas (Form & Display) */
+         .content-area {
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            display: none; /* Start hidden */
+         }
+         .content-area.active {
+             display: block;
+             opacity: 1;
+             transform: translateY(0);
+         }
+         .content-area.inactive {
+             display: none;
+         }
+         /* Specific animation for hiding the form */
+        .content-area.hiding {
+            opacity: 0;
+            transform: translateY(-15px);
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 80px;
-            color: #fff;
+            width: calc(100% - 80px); /* Match container padding */
+            top: 40px; /* Match container padding */
+            left: 40px;/* Match container padding */
         }
 
-        .con {
-            margin: 0 auto;
-        }
-
-        .con h1 {
+        /* Form Specific Styles */
+        #registration-form h2 {
             text-align: center;
-            color: #fff;
-            font-size: 40px;
-            margin-top: 50px;
-            
+            margin-bottom: 0.5em;
+            color: var(--accent-color);
         }
-
-        .con h1 b {
-            color: #65ff00;
-            text-shadow: 0 0 50px #65ff00, 0 0 50px #65ff00;
-        }
-
-        .con p {
+        #registration-form .form-intro {
             text-align: center;
-            color: #fff;
-            font-size: 29px;
+            margin-top: -10px;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+            color: var(--text-light);
         }
 
-        .content {
-            text-align: center;
-            width: 90%;
-            margin: 0 auto;
+        .form-grid {
+             display: grid;
+             grid-template-columns: 1fr 1fr;
+             gap: 18px 25px;
+             margin-bottom: 25px;
         }
-
-        .content img {
-            height: 200px;
+         .form-grid .form-group.full-width {
+             grid-column: 1 / -1;
+         }
+         .form-group {
+            margin-bottom: 0;
+            position: relative;
         }
-
-        .shadowfilter {
-            -webkit-filter: drop-shadow(0px 0px 4px rgba(43, 213, 255, 0.80));
-            filter: drop-shadow(0px 0px 4px rgba(43, 213, 255, 0.80)); /* For standard syntax */
-            -webkit-transition: all 0.5s linear;
-            -o-transition: all 0.5s linear;
-            transition: all 0.5s linear;
-        }
-
-        .shadowfilter:hover {
-            -webkit-filter: drop-shadow(0px 0px 10px rgba(43, 213, 255, 0.8));
-            filter: drop-shadow(0px 0px 10px rgba(43, 213, 255, 0.8)); /* For standard syntax */
-        }
-
-        .content h1 {
-            font-size: 70px;
-            color: #65ff00;
-            text-shadow: 0 0 50px #65ff00, 0 0 50px #65ff00;
-            
-            font-family: "Raleway", sans-serif;
-        }
-
-        .content h2 {
-            text-align: center;
-            font-size: 45px;
-            color: #fff;
-        }
-
-        .content p {
-            font-size: 20px;
-            color: #15b6ff;
-            font-family: "Playwrite IT Moderna", cursive;
-        }
-
-        #formOutput1,
-        #formOutput2,
-        #formOutput3,
-        #formOutput4 {
-            padding: 20px;
-            border-radius: 8px;
-            display: none; /* Initially hide the form outputs */
-            width: 880px;
-            margin: 0 auto; /* Center-align the outputs */
-        }
-
-        #formOutput1 h1,
-        #formOutput2 h2,
-        #formOutput3 h2,
-        #formOutput4 h2 {
-            font-size: 38px;
-            color: #3bff00; /* Change the color */
-            text-shadow: 0 0 40px #3bff00; /* Add text shadow */
-            text-align: left;
-            margin-left: 30px;
-        }
-
-        #formOutput1 p,
-        #formOutput2 p,
-        #formOutput3 p,
-        #formOutput4 p,
-        #formOutput5 p {
-            margin: 10px 0; /* Increase the margin for better spacing */
-            color: #fff; /* Change the text color */
-            font-size: 25px;
-        }
-
-        #formOutput1 strong,
-        #formOutput2 strong,
-        #formOutput3 strong,
-        #formOutput4 strong {
-            font-weight: bold;
-            color: #2bd5ff;
-            font-family: "Jost", sans-serif; /* Change the color of strong elements */
-        }
-
-        #formOutput1 img,
-        #formOutput2 img,
-        #formOutput3 img,
-        #formOutput4 img {
-            height: 150px; /* Decrease the image height for better fit */
-            margin-top: 20px; /* Add some top margin for spacing */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a soft shadow */
-            text-align: left;
-            margin-left: 700px;
-        }
-
-        /* Style for formOutput5 box */
-        #formOutput5 {
-            padding: 20px;
-            border: 2px solid #4CAF50;
-            border-radius: 8px;
-            background-color: #1b1b1b; /* Dark background */
-            width: 880px;
-            margin: 20px auto; /* Center-align the box */
-            display: none;
-            color: #fff; /* White text */
-            font-size: 25px;
-        }
-
-        /* Style for copy button */
-        .copy-button {
+        .form-group label {
             display: block;
-            margin: 10px auto;
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            text-align: center;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="password"],
+        .form-group input[type="tel"], /* Use tel for numbers */
+        .form-group input[type="number"], /* For age */
+        .form-group input[type="url"], /* For FB ID */
+        .form-group select {
+            width: 100%;
+            padding: 11px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            background-color: var(--secondary-bg);
+        }
+        .form-group input[type="password"] {
+            padding-right: 45px;
+        }
+        /* Phone input specific layout */
+        .phone-input-group {
+            display: flex;
+            gap: 10px;
+        }
+        .phone-input-group select {
+            flex: 0 0 120px; /* Fixed width for country code */
+        }
+        .phone-input-group input[type="tel"] {
+            flex: 1 1 auto;
         }
 
-        .copy-button:hover {
-            background-color: #45a049;
+         .form-group select {
+             cursor: pointer;
+             appearance: none;
+             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2364748b'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd' /%3E%3C/svg%3E");
+             background-repeat: no-repeat;
+             background-position: right 12px center;
+             background-size: 1.2em;
+             padding-right: 40px;
+         }
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px var(--accent-light);
+        }
+
+        /* Password Toggle Button */
+        .password-toggle { position: absolute; top: 50%; right: 1px; transform: translateY(-50%); margin-top: 13px; background: none; border: none; padding: 8px 12px; cursor: pointer; color: var(--text-lighter); font-size: 1rem; line-height: 1; transition: color 0.3s ease; }
+        .password-toggle:hover { color: var(--accent-color); }
+        .form-group:not(:has(label)) .password-toggle { margin-top: 0; top: 50%; }
+
+        /* --- Profile Display Area Styles (Combined Theme + Snippet 2 Intent) --- */
+        #profile-display {
+            /* Uses .content-area for visibility toggle */
+        }
+        #profile-display .display-header { /* New header for name */
+             text-align: center;
+             margin-bottom: 30px;
+             padding-bottom: 15px;
+             border-bottom: 1px solid var(--border-color);
+        }
+        #profile-display .display-header h2 {
+             font-size: 2rem;
+             color: var(--accent-color);
+             margin-bottom: 0;
+        }
+        #profile-display .display-section {
+            background-color: var(--tertiary-bg);
+            padding: 25px 30px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border-color);
+            position: relative; /* For pseudo elements or absolute positioning if needed */
+        }
+         #profile-display .display-section.user-details-section {
+              padding-top: 40px; /* More space because of image */
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+              gap: 15px 30px;
+              position: relative;
+         }
+          #profile-display .profile-image-container {
+               position: absolute;
+               top: 20px;
+               right: 30px;
+               width: 100px; /* Adjust size as needed */
+               height: 100px;
+               border-radius: 50%;
+               overflow: hidden;
+               border: 3px solid var(--accent-light);
+               box-shadow: 0 4px 10px var(--shadow-color);
+               background-color: var(--secondary-bg); /* Fallback bg */
+          }
+           #profile-display .profile-image-container img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+           }
+
+        #profile-display .display-section h3 { /* Section titles */
+            font-size: 1.3rem;
+            color: var(--output-heading-color);
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--accent-light);
+            display: inline-block; /* Fit border to text */
+            /* text-shadow: 0 0 10px var(--output-heading-shadow); Optional shadow */
+        }
+
+        #profile-display p {
+            margin-bottom: 12px; /* Consistent spacing */
+            color: var(--output-text-color);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        #profile-display strong {
+            font-weight: 600;
+            color: var(--output-label-color); /* Use theme accent */
+            margin-right: 8px;
+             /* Optional: Apply Jost font if loaded and desired */
+             /* font-family: 'Jost', sans-serif; */
+        }
+
+        /* Copy Section Specific Styles */
+        #output-copy-section {
+            background-color: var(--output-copy-bg);
+            color: var(--output-copy-text);
+            border: 1px solid var(--output-copy-border);
+            padding: 25px 30px;
+            border-radius: 8px;
+        }
+         #output-copy-section h3 { /* Override heading color for this section */
+              color: var(--success-color);
+              border-bottom-color: rgba(16, 185, 129, 0.3);
+         }
+         #output-copy-section p {
+             color: var(--output-copy-text);
+             font-size: 0.95rem;
+             line-height: 1.7;
+             margin-bottom: 8px;
+         }
+         #output-copy-section p:last-child { /* Style the warning */
+             margin-top: 15px;
+             font-weight: 500;
+             color: #facc15; /* Yellow warning */
+         }
+
+         /* Error Message Styling */
+         .error-message { color: var(--error-color); font-size: 0.9rem; margin-top: -15px; margin-bottom: 20px; text-align: center; display: none; background-color: rgba(239, 68, 68, 0.08); padding: 10px; border-radius: 6px; border: 1px solid rgba(239, 68, 68, 0.2); font-weight: 500; }
+         .form-group input.error, .form-group select.error { border-color: var(--error-color); box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15); }
+
+        /* --- Footer (From Theme) --- */
+        .main-footer { background-color: #1e293b; color: #cbd5e1; padding: 50px 0 20px 0; margin-top: auto; }
+        .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; margin-bottom: 40px; }
+        .footer-col { flex: 1; min-width: 200px; margin-bottom: 20px; }
+        .footer-col h4 { color: #fff; margin-bottom: 20px; font-size: 1.1rem; font-weight: 600; position: relative; padding-bottom: 10px; }
+        .footer-col h4::after { content: ''; position: absolute; left: 0; bottom: 0; width: 40px; height: 2px; background-color: var(--accent-color); }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a { color: #cbd5e1; transition: color 0.3s ease, padding-left 0.3s ease; }
+        .footer-col ul li a:hover { color: #fff; padding-left: 5px; }
+        .footer-bottom { border-top: 1px solid #334155; padding-top: 25px; text-align: center; font-size: 0.9rem; color: #94a3b8; }
+
+        /* --- Responsive Design (From Theme, may need minor tweaks) --- */
+        @media (max-width: 992px) {
+            /* Nav toggle */
+            .menu-toggle { display: block; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
+            .main-nav { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background-color: var(--secondary-bg); padding: 15px 0; box-shadow: 0 4px 10px var(--shadow-color); text-align: center; animation: slideDown 0.3s ease-out; }
+            .main-nav.active { display: flex; }
+            .main-nav a { margin: 10px 20px; padding: 8px 0; width: auto; }
+            .main-nav a::after { display: none; }
+            .main-nav a:hover { background-color: var(--primary-bg); }
+            @keyframes slideDown { from { opacity: 0; transform: translateY(-10%); } to { opacity: 1; transform: translateY(0); } }
+            .registration-container { max-width: 90%; padding: 35px 30px;}
+             #profile-display .profile-image-container { width: 80px; height: 80px; top: 15px; right: 20px; }
+        }
+        @media (max-width: 768px) {
+            .footer-content { text-align: center; }
+            .footer-col { flex-basis: 100%; margin-bottom: 30px; align-items: center; }
+            .footer-col h4::after { left: 50%; transform: translateX(-50%); }
+            #registration-section { padding: 40px 0; }
+            .registration-container { padding: 30px 20px; max-width: 95%;}
+            .form-grid { grid-template-columns: 1fr; gap: 15px 0;}
+            #profile-display .display-section { padding: 20px; }
+             #profile-display .display-section.user-details-section { padding-top: 20px; grid-template-columns: 1fr; } /* Stack grid items */
+             #profile-display .profile-image-container { position: static; /* Make image static */ display: block; margin: 0 auto 20px auto; /* Center it */ width: 100px; height: 100px; }
+        }
+        @media (max-width: 576px) {
+             .logo { font-size: 1.3rem; }
+             .registration-container { padding: 25px 15px; }
+             h2 { font-size: 1.5rem; }
+              #profile-display .display-header h2 { font-size: 1.6rem; }
+              #profile-display .display-section h3 { font-size: 1.1rem; }
+             .phone-input-group { flex-direction: column; } /* Stack country code/number */
+             .phone-input-group select { flex: auto; }
+             .password-toggle { padding: 6px 10px; font-size: 0.9rem;}
         }
 
     </style>
-    <script>
-        function displayFormData(event) {
-            event.preventDefault(); // Prevent form from submitting the traditional way
-
-            // Get form values
-            const fullName = document.getElementById('fullName').value;
-            const address = document.getElementById('address').value;
-            const age = document.getElementById('age').value;
-            const countryCode = document.getElementById('countryCode').value;
-            const number = document.getElementById('number').value;
-            const email = document.getElementById('email').value;
-            const paymentMethod = document.getElementById('paymentMethod').value;
-            const paymentNumber = document.getElementById('paymentNumber').value;
-            const w4uId = document.getElementById('w4uId').value;
-            const education = document.getElementById('education').value;
-            const facebookId = document.getElementById('facebookId').value;
-            const password = document.getElementById('password').value;
-
-            // Combine country code and number
-            const fullNumber = `${countryCode} ${number}`;
-
-            // Display the values
-            const output4 = `
-                <h2>${fullName}</h2>
-            `;
-            
-            const output1 = `
-                <img src="https://i.postimg.cc/4xdr9FQj/profile.png">
-                <p><strong>Address :</strong> ${address}</p>
-                <p><strong>Age :</strong> ${age}</p>
-                <p><strong>Number :</strong> ${fullNumber}</p>
-                <p><strong>Email :</strong> ${email}</p>
-                <p><strong>Payment Method :</strong> ${paymentMethod}</p>
-                <p><strong>Payment Number :</strong> ${paymentNumber}</p>
-                <p><strong>YI ID :</strong> ${w4uId}</p>
-                <p><strong>Education :</strong> ${education}</p>
-                <p><strong>Referred ID : </strong> RF-T9-16 (Rakibul Islam)</p>
-            `;
-
-            const output2 = `
-                <p><b>Account</b></p>
-                <p><strong>YI User ID :</strong> ${w4uId}</p>
-                <p><strong>Password : </strong> ${password}</p>
-                <p><strong>Region :</strong> BANGLADESH</p>
-                <p><strong>Method :</strong> ${paymentMethod}</p>
-                <p><strong>Payment Number :</strong> ${paymentNumber}</p>
-                <p><strong>Payment Currency :</strong> Taka ৳</p>
-            `;
-
-            const output3 = `
-                <p><b>Contact<b></p>
-                <p><strong>${address}</strong></p>
-                <p><strong>${fullNumber}</strong></p>
-                <p><strong>${facebookId}</strong></p>
-                <p><strong>${email}</strong></p>
-            `;
-            
-            const output5 = `
-                <p>➤ User Info | Your Inspire IT ➤</p><br>
-                <p>Name : ${fullName}</p>
-                <p>Number : ${fullNumber}</p>
-                <p>User ID : ${w4uId}</p>
-                <p>Password : ${password}</p>
-                <p>Referred ID : RF-T9-16 (Rakibul Islam)</p>
-                <p>এগুলো সাবধানে রাখবেন, এগুলো ছাড়া টাকা তুলতে বা লগিং করতে পারবেন না ! </p>
-            `;
-
-            document.getElementById('formOutput1').innerHTML = output1;
-            document.getElementById('formOutput2').innerHTML = output2;
-            document.getElementById('formOutput3').innerHTML = output3;
-            document.getElementById('formOutput4').innerHTML = output4;
-            document.getElementById('formOutput5').innerHTML = output5;
-            document.getElementById('formOutput1').style.display = 'block';
-            document.getElementById('formOutput2').style.display = 'block';
-            document.getElementById('formOutput3').style.display = 'block';
-            document.getElementById('formOutput4').style.display = 'block';
-            document.getElementById('formOutput5').style.display = 'block';
-
-            // Hide the form
-            document.getElementById('simpleForm').style.display = 'none';
-        }
-
-        function copyToClipboard() {
-            const output5 = document.getElementById('formOutput5');
-            const range = document.createRange();
-            range.selectNode(output5);
-            window.getSelection().removeAllRanges(); 
-            window.getSelection().addRange(range);
-            document.execCommand('copy');
-            window.getSelection().removeAllRanges();
-            alert('Copied to clipboard');
-        }
-    </script>
 </head>
 <body>
-    <div class="box" id="box">
-        <div class="done-sign">&#10004;</div>
-    </div>
 
-    <div class="con">
-        <h1>Congratulations, Your account is <b>Approved</b>.</h1>
-        <p>Let's start earning <b>money</b>.</p>
-    </div>
-
-    <br><br><br><br><br><br>
-    <div class="main">
-        <div class="content">
-            <img class="shadowfilter" src="https://i.postimg.cc/ZRc76Fqb/In-Shot-20241024-202136364.png">
-            <h1>Your Inspire IT</h1>
-            <p>Make Your Inspire</p><br>
-            <hr><br>
-            <h2>Joining Form</h2>
+    <!-- Header (From Theme) -->
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="logo">Your Inspire IT</a>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="main-nav" id="main-nav">
+                 <!-- Simplified Nav for this page -->
+                 <a href="index.html">Home</a>
+                 <a href="#">About</a>
+                 <a href="#">Contact</a>
+                 <a href="auth.html" class="active-nav">Register/Approve</a>
+            </nav>
         </div>
-    </div>
+    </header>
 
-    <div class="container">
-        <h2>Simple HTML Form</h2>
-        <form id="simpleForm" onsubmit="displayFormData(event)">
-            <label for="fullName">Full Name:</label>
-            <input type="text" id="fullName" name="fullName" required>
+    <main>
+        <!-- Registration Section -->
+        <section id="registration-section">
+            <div class="registration-container">
 
-            <label for="address">Address:</label>
-            <input type="text" id="address" name="address" required>
+                <!-- Registration Details Form (Fields from Snippet 2) -->
+                <form id="registration-form" class="content-area active" novalidate>
+                    <h2>User Registration Details</h2>
+                    <p class="form-intro">Fill in the information below to generate the approval details.</p>
 
-            <label for="age">Age:</label>
-            <input type="number" id="age" name="age" required>
+                    <div id="error-message" class="error-message">Please fill out all required fields correctly.</div>
 
-            <label for="number">Number:</label>
-            <div class="phone-input">
-                <select id="countryCode" name="countryCode" required>
-                    <option value="+1">+880 (Bangladesh)</option>
-                    <option value="+44">+44 (UK)</option>
-                    <option value="+91">+91 (India)</option>
-                    <option value="+880">+880 (Bangladesh)</option>
-                    <!-- Add more country codes as needed -->
-                </select>
-                <input type="number" id="number" name="number" required>
-            </div>
+                    <div class="form-grid">
+                        <!-- Fields from Snippet 2, adapted to theme's structure -->
+                        <div class="form-group">
+                            <label for="fullName">Full Name:</label>
+                            <input type="text" id="fullName" name="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Age:</label>
+                            <input type="number" id="age" name="age" required min="1" max="120">
+                        </div>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+                         <div class="form-group full-width">
+                            <label for="address">Address:</label>
+                            <input type="text" id="address" name="address" required>
+                        </div>
 
-            <label for="paymentMethod">Payment Method:</label>
-            <select id="paymentMethod" name="paymentMethod" required>
-                <option value="bKash">bKash</option>
-                <option value="nagad">nagad</option>
-                <option value="rocket">rocket</option>
-                <option value="recherg">recherg</option>
-                <!-- Add more payment methods as needed -->
-            </select>
+                        <div class="form-group">
+                             <label for="number">Number:</label>
+                             <div class="phone-input-group">
+                                 <select id="countryCode" name="countryCode" required>
+                                     <option value="+880">+880 (BD)</option>
+                                     <option value="+1">+1 (USA/CAN)</option>
+                                     <option value="+44">+44 (UK)</option>
+                                     <option value="+91">+91 (India)</option>
+                                     <!-- Add more country codes as needed -->
+                                 </select>
+                                 <input type="tel" id="number" name="number" required pattern="[0-9\s-()]*">
+                            </div>
+                        </div>
 
-            <label for="paymentNumber">Payment Number:</label>
-            <input type="number" id="paymentNumber" name="paymentNumber" required>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
 
-            <label for="w4uId">YI User ID:</label>
-            <input type="text" id="w4uId" name="w4uId" required>
+                        <div class="form-group">
+                            <label for="paymentMethod">Payment Method:</label>
+                            <select id="paymentMethod" name="paymentMethod" required>
+                                <option value="" disabled selected>Select Method...</option>
+                                <option value="bKash">bKash</option>
+                                <option value="Nagad">Nagad</option>
+                                <option value="Rocket">Rocket</option>
+                                <option value="Recharge">Mobile Recharge</option>
+                            </select>
+                        </div>
 
-            <label for="education">Education:</label>
-            <input type="text" id="education" name="education" required>
+                        <div class="form-group">
+                            <label for="paymentNumber">Payment Number:</label>
+                            <input type="tel" id="paymentNumber" name="paymentNumber" required pattern="[0-9\s-()]*">
+                        </div>
 
-            <label for="facebookId">Facebook ID:</label>
-            <input type="text" id="facebookId" name="facebookId" required>
+                        <div class="form-group">
+                            <label for="w4uId">YI User ID:</label> <!-- Changed label slightly -->
+                            <input type="text" id="w4uId" name="w4uId" required>
+                        </div>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+                         <div class="form-group">
+                            <label for="education">Education:</label>
+                            <input type="text" id="education" name="education" required>
+                        </div>
 
-            <input type="submit" value="Submit">
-        </form>
+                        <div class="form-group">
+                            <label for="facebookId">Facebook Profile Link:</label> <!-- Changed label slightly -->
+                            <input type="url" id="facebookId" name="facebookId" placeholder="https://..." required>
+                        </div>
 
-        <div id="formOutput4"></div>
-        <div id="formOutput1"></div>
-        <div id="formOutput2"></div>
-        <div id="formOutput3"></div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <div id="formOutput5"></div>
-        <button class="copy-button" onclick="copyToClipboard()">Copy</button>
-    </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" name="password" required minlength="6">
+                            <button type="button" class="password-toggle" aria-label="Toggle password visibility">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+
+                    </div> <!-- End of form-grid -->
+
+                    <button type="submit" class="btn" id="approve-btn">Submit & View Details</button>
+                </form>
+
+                <!-- Profile Display Area (Structure from Snippet 2, Styled by Theme) -->
+                <div id="profile-display" class="content-area inactive">
+                     <!-- Header with Name -->
+                     <div class="display-header">
+                         <h2 id="display-full-name">User Name Here</h2>
+                         <p style="color: var(--success-color); font-weight: 500; margin-top: 5px;"><i class="fas fa-check-circle"></i> Account Are Approved!</p>
+                     </div>
+
+                     <!-- Section 1: User Details (Corresponds to formOutput1) -->
+                     <div class="display-section user-details-section" id="output-user-details">
+                          <div class="profile-image-container">
+                               <img src="https://i.postimg.cc/4xdr9FQj/profile.png" alt="Profile Placeholder">
+                          </div>
+                          <!-- Content populated by JS -->
+                          <!-- Example structure: <p><strong>Address:</strong> <span id="display-address"></span></p> -->
+                     </div>
+
+                      <!-- Section 2: Account Info (Corresponds to formOutput2) -->
+                     <div class="display-section" id="output-account-info">
+                          <h3><i class="fas fa-user-cog" style="margin-right: 8px;"></i>Account Info</h3>
+                          <!-- Content populated by JS -->
+                     </div>
+
+                     <!-- Section 3: Contact Info (Corresponds to formOutput3) -->
+                     <div class="display-section" id="output-contact-info">
+                          <h3><i class="fas fa-address-book" style="margin-right: 8px;"></i>Contact Details</h3>
+                           <!-- Content populated by JS -->
+                     </div>
+
+                     <!-- Section 4: Copy Block (Corresponds to formOutput5) -->
+                     <div id="output-copy-section">
+                          <h3><i class="fas fa-clipboard" style="margin-right: 8px;"></i>Important User Info</h3>
+                          <!-- Content populated by JS -->
+                     </div>
+
+                     <button class="btn btn-success copy-button" onclick="copyToClipboard()">
+                         <i class="fas fa-copy" style="margin-right: 8px;"></i> Copy Important Info
+                    </button>
+                </div>
+
+            </div> <!-- End of registration-container -->
+        </section>
+    </main>
+
+    <!-- Footer (From Theme) -->
+    <footer class="main-footer">
+        <div class="container">
+             <div class="footer-content">
+                 <!-- Footer columns -->
+                 <div class="footer-col"><h4>About Us</h4><ul><li><a href="#">Our Mission</a></li><li><a href="#">How it Works</a></li><li><a href="#">Blog</a></li></ul></div>
+                 <div class="footer-col"><h4>Support</h4><ul><li><a href="#">Help Center / FAQ</a></li><li><a href="#">Contact Us</a></li><li><a href="#">Report</a></li><li><a href="#">Payment Info</a></li></ul></div>
+                 <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Terms of Service</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Earning Disclaimer</a></li></ul></div>
+             </div>
+             <div class="footer-bottom">© 2022-2025 Your Inspire IT. All Rights Reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+         // --- Mobile Menu Toggle (From Theme) ---
+         const menuToggle = document.getElementById('menu-toggle');
+         const mainNav = document.getElementById('main-nav');
+         if (menuToggle && mainNav) {
+             menuToggle.addEventListener('click', () => {
+                 mainNav.classList.toggle('active');
+                 const icon = menuToggle.querySelector('i');
+                 icon.classList.toggle('fa-bars');
+                 icon.classList.toggle('fa-times');
+             });
+         }
+
+         // --- Password Visibility Toggle (From Theme) ---
+         const passwordInput = document.getElementById('password');
+         const passwordToggle = document.querySelector('.password-toggle');
+         if (passwordInput && passwordToggle) {
+             passwordToggle.addEventListener('click', () => {
+                 const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                 passwordInput.setAttribute('type', type);
+                 const icon = passwordToggle.querySelector('i');
+                 icon.classList.toggle('fa-eye');
+                 icon.classList.toggle('fa-eye-slash');
+             });
+         }
+
+         // --- Form Submission & Display Logic (Adapted from Snippet 2) ---
+         const registrationForm = document.getElementById('registration-form');
+         const profileDisplay = document.getElementById('profile-display');
+         const errorMessage = document.getElementById('error-message');
+         const approveBtn = document.getElementById('approve-btn');
+
+         // References to output areas
+         const displayFullName = document.getElementById('display-full-name');
+         const outputUserDetails = document.getElementById('output-user-details');
+         const outputAccountInfo = document.getElementById('output-account-info');
+         const outputContactInfo = document.getElementById('output-contact-info');
+         const outputCopySection = document.getElementById('output-copy-section'); // Inner content target
+
+         function displayFormData(event) {
+             event.preventDefault(); // Prevent form from submitting the traditional way
+
+             if (!validateForm()) { // Use validation from Theme
+                 approveBtn.disabled = false;
+                 approveBtn.textContent = 'Submit & View Details';
+                 return;
+             }
+
+             approveBtn.disabled = true;
+             approveBtn.textContent = 'Processing...';
+
+             // Get form values (using IDs from the new form)
+             const fullName = document.getElementById('fullName').value;
+             const address = document.getElementById('address').value;
+             const age = document.getElementById('age').value;
+             const countryCode = document.getElementById('countryCode').value;
+             const number = document.getElementById('number').value;
+             const email = document.getElementById('email').value;
+             const paymentMethod = document.getElementById('paymentMethod').value;
+             const paymentNumber = document.getElementById('paymentNumber').value;
+             const w4uId = document.getElementById('w4uId').value;
+             const education = document.getElementById('education').value;
+             const facebookId = document.getElementById('facebookId').value;
+             const password = document.getElementById('password').value; // Get password
+
+             // Combine country code and number
+             const fullNumber = `${countryCode} ${number}`;
+
+             // --- Populate Display Areas ---
+
+             // 1. Main Header Name
+             displayFullName.textContent = fullName;
+
+             // 2. User Details Section (Output 1)
+             outputUserDetails.innerHTML = `
+                 <div class="profile-image-container">
+                      <img src="https://i.postimg.cc/4xdr9FQj/profile.png" alt="Profile Placeholder">
+                 </div>
+                 <p><strong>Address:</strong> ${address || 'N/A'}</p>
+                 <p><strong>Age:</strong> ${age || 'N/A'}</p>
+                 <p><strong>Number:</strong> ${fullNumber || 'N/A'}</p>
+                 <p><strong>Email:</strong> ${email || 'N/A'}</p>
+                 <p><strong>Payment Method:</strong> ${paymentMethod || 'N/A'}</p>
+                 <p><strong>Payment Number:</strong> ${paymentNumber || 'N/A'}</p>
+                 <p><strong>YI User ID:</strong> ${w4uId || 'N/A'}</p>
+                 <p><strong>Education:</strong> ${education || 'N/A'}</p>
+                 <p><strong>Referred By:</strong> RF-T9-16 (Rakibul Islam)</p> <!-- Hardcoded as per snippet 2 -->
+             `;
+
+             // 3. Account Info Section (Output 2)
+             outputAccountInfo.innerHTML = `
+                 <h3><i class="fas fa-user-cog" style="margin-right: 8px;"></i>Account Info</h3>
+                 <p><strong>YI User ID:</strong> ${w4uId || 'N/A'}</p>
+                 <p><strong>Password:</strong> ${password ? '********' : 'N/A'} <span style="font-size:0.8em; color: var(--text-light);">(Hidden for security)</span></p>
+                 <p><strong>Region:</strong> BANGLADESH</p> <!-- Hardcoded -->
+                 <p><strong>Payment Method:</strong> ${paymentMethod || 'N/A'}</p>
+                 <p><strong>Payment Number:</strong> ${paymentNumber || 'N/A'}</p>
+                 <p><strong>Payment Currency:</strong> Taka ৳</p> <!-- Hardcoded -->
+             `;
+
+             // 4. Contact Info Section (Output 3)
+             outputContactInfo.innerHTML = `
+                  <h3><i class="fas fa-address-book" style="margin-right: 8px;"></i>Contact Details</h3>
+                  <p><strong>Address:</strong> ${address || 'N/A'}</p>
+                  <p><strong>Number:</strong> ${fullNumber || 'N/A'}</p>
+                  <p><strong>Facebook:</strong> <a href="${facebookId}" target="_blank" rel="noopener noreferrer">${facebookId || 'N/A'}</a></p>
+                  <p><strong>Email:</strong> <a href="mailto:${email}">${email || 'N/A'}</a></p>
+             `;
+
+             // 5. Copy Block Section (Output 5) - Inner content only
+              outputCopySection.innerHTML = `
+                   <h3><i class="fas fa-clipboard" style="margin-right: 8px;"></i>Important User Info</h3>
+                   <p>➤ User Info | Your Inspire IT ➤</p><br>
+                   <p><strong>Name:</strong> ${fullName}</p>
+                   <p><strong>Number:</strong> ${fullNumber}</p>
+                   <p><strong>User ID:</strong> ${w4uId}</p>
+                   <p><strong>Password:</strong> ${password}</p> <!-- Show password here for copying -->
+                   <p><strong>Referred ID:</strong> RF-T9-16 (Rakibul Islam)</p> <!-- Hardcoded -->
+                   <p>এগুলো সাবধানে রাখবেন, এগুলো ছাড়া টাকা তুলতে বা লগিং করতে পারবেন না !</p>
+              `;
+
+
+             // --- Switch Views using Theme's method ---
+             registrationForm.classList.add('hiding');
+             setTimeout(() => {
+                 registrationForm.classList.remove('active');
+                 registrationForm.classList.add('inactive');
+                 registrationForm.classList.remove('hiding');
+
+                 profileDisplay.classList.remove('inactive');
+                 setTimeout(() => {
+                    profileDisplay.classList.add('active');
+                    // Scroll to top of displayed info
+                    profileDisplay.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                 }, 50);
+             }, 550); // Match animation duration
+         }
+
+        // Function to validate the form (From Theme)
+        function validateForm() {
+            let isValid = true;
+            errorMessage.style.display = 'none';
+            errorMessage.textContent = "Please fill out all required fields correctly.";
+            registrationForm.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+
+            const inputsToCheck = registrationForm.querySelectorAll('[required]');
+
+            inputsToCheck.forEach(input => {
+                 // Trim value for text-based inputs
+                 const value = (typeof input.value === 'string') ? input.value.trim() : input.value;
+
+                 if (!value) {
+                     isValid = false;
+                     input.classList.add('error');
+                     // If it's inside a group (like phone), target the group elements visually if needed
+                     input.closest('.form-group')?.querySelectorAll('input, select').forEach(el => el.classList.add('error'));
+                 } else if (input.type === 'email' && !/^\S+@\S+\.\S+$/.test(value)) {
+                     isValid = false;
+                     input.classList.add('error');
+                     errorMessage.textContent = "Please enter a valid email address.";
+                 } else if (input.type === 'password' && input.hasAttribute('minlength') && value.length < parseInt(input.getAttribute('minlength'))) {
+                     isValid = false;
+                     input.classList.add('error');
+                     errorMessage.textContent = `Password must be at least ${input.getAttribute('minlength')} characters long.`;
+                 } else if (input.type === 'url' && !/^https?:\/\/.+/.test(value)) {
+                     isValid = false;
+                     input.classList.add('error');
+                     errorMessage.textContent = "Please enter a valid URL (starting with http:// or https://).";
+                 } else if (input.validity && !input.validity.valid) { // Catch browser pattern mismatches (like tel)
+                     isValid = false;
+                     input.classList.add('error');
+                     errorMessage.textContent = "Please ensure all fields follow the correct format.";
+                 }
+                 else {
+                     // Remove error from the specific input and potentially its group
+                      input.classList.remove('error');
+                      const groupInputs = input.closest('.form-group')?.querySelectorAll('input, select');
+                      if(groupInputs && ![...groupInputs].some(el => el.classList.contains('error'))) {
+                          groupInputs.forEach(el => el.classList.remove('error'));
+                      }
+                 }
+            });
+
+
+            if (!isValid) {
+                errorMessage.style.display = 'block';
+                const firstError = registrationForm.querySelector('.error');
+                if(firstError) {
+                   firstError.focus();
+                   errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+            return isValid;
+        }
+
+         // Attach submit listener
+         if (registrationForm && profileDisplay) {
+             registrationForm.addEventListener('submit', displayFormData);
+         }
+
+         // Reset input error state on input change (From Theme)
+         registrationForm.querySelectorAll('input[required], select[required]').forEach(input => {
+            input.addEventListener('input', () => {
+                 // Remove error class on input - validation happens on submit
+                  if (input.classList.contains('error')) {
+                      input.classList.remove('error');
+                      // Also remove from siblings in the group if applicable
+                      input.closest('.form-group')?.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+                      // Check if any errors remain before hiding message
+                      if (!registrationForm.querySelector('.error')) {
+                         errorMessage.style.display = 'none';
+                      }
+                  }
+            });
+         });
+
+        // --- Copy to Clipboard Function (Adapted from Snippet 2) ---
+        function copyToClipboard() {
+            const copyContentElement = document.getElementById('output-copy-section');
+            if (!copyContentElement) return;
+
+            // Extract text content, trying to format it nicely
+            let textToCopy = "";
+            copyContentElement.querySelectorAll('p').forEach(p => {
+                // Replace strong tags and cleanup extra spaces for better plain text copy
+                let line = p.innerHTML.replace(/<strong>(.*?)<\/strong>/gi, '$1:') // Replace strong with colon
+                                    .replace(/<br\s*\/?>/gi, '\n') // Replace <br> with newline
+                                    .replace(/ /g, ' ') // Replace  
+                                    .replace(/<[^>]+>/g, '') // Strip remaining HTML tags
+                                    .trim();
+                 if (line) textToCopy += line + '\n';
+            });
+
+             textToCopy = textToCopy.trim(); // Trim final newline
+
+             if (!textToCopy) {
+                alert('Nothing to copy.');
+                return;
+             }
+
+            // Use modern Clipboard API if available (preferred)
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    alert('Important Info Copied to clipboard!');
+                }).catch(err => {
+                    console.error('Failed to copy using Clipboard API:', err);
+                    // Fallback to execCommand if API fails
+                    fallbackCopyTextToClipboard(textToCopy);
+                });
+            } else {
+                // Fallback for older browsers
+                fallbackCopyTextToClipboard(textToCopy);
+            }
+        }
+
+        // Fallback using execCommand
+        function fallbackCopyTextToClipboard(text) {
+             const textArea = document.createElement("textarea");
+             textArea.value = text;
+
+             // Avoid scrolling to bottom
+             textArea.style.top = "0";
+             textArea.style.left = "0";
+             textArea.style.position = "fixed";
+
+             document.body.appendChild(textArea);
+             textArea.focus();
+             textArea.select();
+
+             try {
+                 const successful = document.execCommand('copy');
+                 if (successful) {
+                    alert('Important Info Copied to clipboard!');
+                 } else {
+                    alert('Copying failed. Please copy manually.');
+                 }
+             } catch (err) {
+                 console.error('Fallback copy failed:', err);
+                 alert('Copying failed. Please copy manually.');
+             }
+
+             document.body.removeChild(textArea);
+         }
+
+    </script>
+
 </body>
-</html> 
+    </html>
